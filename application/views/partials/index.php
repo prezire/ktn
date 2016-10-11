@@ -17,6 +17,7 @@
 						<?php 
 							//Reverse geocoding to get addr.
 							//https://developers.google.com/maps/documentation/geocoding/intro
+							//https://developers.google.com/maps/documentation/javascript/examples/geocoding-reverse
 							echo $r->lat . ', ' . $r->lng; 
 						?>
 						</td>
