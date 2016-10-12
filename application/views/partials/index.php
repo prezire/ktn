@@ -1,6 +1,6 @@
 <div id="report" class="index">
-	<h1>Seen Kittens</h1>
-	<a href="<?php echo site_url('Report/map'); ?>" class="btn btn-danger">Report Seen Kitten</a>
+	<h1>Reported / Seen Kittens</h1>
+	<a href="<?php echo site_url('Report/map'); ?>" class="btn btn-warning btn-xs">Report Seen Kitten</a>
 	<div class="row">
 		<div class="col-xs-12">
 			<div class="table-responsive">
@@ -16,7 +16,20 @@
 					<tbody>
 						<?php foreach($reports as $r){ ?>
 						<tr>
-							<td><img src="<?php echo $r->photo; ?>" /></td>
+							<td>
+								<?php
+									$photo = $r->photo;
+									if(empty($photo))
+									{
+										echo 'No photo';
+									}
+									else
+									{
+										$photo = base_url($photo);
+										echo "<img src=\"{$photo}\" class=\"photo\" />";
+									}
+								?>
+							</td>
 							<td><?php echo $r->address; ?></td>
 							<td><?php echo $r->description; ?></td>
 							<td><?php echo $r->datetime_last_seen; ?></td>

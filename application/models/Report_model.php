@@ -10,9 +10,28 @@ final class Report_model extends CI_Model
     {
         return $this->db->get('reports');
     }
-    public function create(array $data)
+    private function savePhoto(array $values)
     {
-        $this->db->insert('reports', $data);
+        if(empty($values['photo']))
+        {
+            return '';
+        }
+        else
+        {
+            $photoData = $values['photo'];
+            $binaryData = base64_decode($photoData);
+            $filename = generateToken(rand(0, 99999)) . '.jpg';
+            $filePath = "./public/uploads/photos/{$filename}";
+            file_put_contents($filePath, $binaryData);
+            return $filePath;
+        }
+    }
+    public function create(array $values)
+    {
+        //Replace new value of photo key, 
+        //which will be saved later on.
+        $values['photo'] = $this->savePhoto($values);
+        $this->db->insert('reports', $values);
         $id = $this->db->insert_id();
         return $this->read($id);
     }

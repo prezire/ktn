@@ -1,4 +1,9 @@
+#report.index .photo {
+  width: 60px; }
+#report.update .photo {
+  width: 100px; }
 #report.map #gmap {
   height: 450px;
-  border: 1px solid red;
-}
+  border: 1px solid red; }
+
+/*# sourceMappingURL=app.css.map */

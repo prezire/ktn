@@ -1,8 +1,15 @@
 #report
 {
-    &.map #gmap
+    &.index{.photo{width: 60px;}}
+
+    &.update{.photo{width: 100px;}}
+
+    &.map 
     {
-        height: 450px;
-        border: 1px solid red;
+        #gmap
+        {
+            height: 450px;
+            border: 1px solid red;
+        }
     }
 }

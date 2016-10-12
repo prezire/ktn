@@ -1,13 +1,13 @@
 <div id="report" class="map">
     <h1>Map</h1>
-    <a href="<?php echo site_url(); ?>" class="btn btn-default">Home</a>
+    <a href="<?php echo site_url(); ?>" class="btn btn-default btn-xs">Back</a>
     <div>
-        <!-- <a href="#" class="btn btn-primary take-photo">Take Photo</a> -->
-
         <form>
             <div class="row">
                 <div class="col-sm-6">
-                    <input type="text" class="keywords" placeholder="Orange kitten." />
+                    <input type="text" 
+                        class="keywords" 
+                        placeholder="Search: Orange kitten." />
                     <select class="distance">
                       <option value="1">1 KM</option>
                       <option value="2">2 KM</option>
@@ -26,12 +26,23 @@
                 </div>
                 <div class="col-sm-6">
                     <div>Seen a kitten? Report it.</div>
-                    <input type="text"
-                      class="description"
-                      placeholder="Description: orange kitten, alone and soaked in rain." />
-                    <?php echo view('partials/report_status', NULL, TRUE); ?>
-                    <button class="btn-report-now">Report Now</button>
-                    <div><?php echo \Carbon\Carbon::now(); ?></div>
+                    <div>
+                        <div class="camera"></div>
+                        <input type="hidden" class="photo" name="photo" />
+                        <a href="#" class="btn btn-primary btn-take-photo">Take Photo</a>
+                    </div>
+                    <div>
+                        <input type="text"
+                          class="description"
+                          placeholder="Description: orange kitten, alone and soaked in rain." />
+                        <?php echo view('partials/report_status', NULL, TRUE); ?>
+                        <button class="btn-report-now">Report Now</button>
+                        <div>
+                            <?php 
+                                echo toHumanizeDate(\Carbon\Carbon::now());
+                            ?>
+                        </div>
+                    </div>
                 </div>
             </div>
           </form>
@@ -234,6 +245,7 @@
                 var descr = $('form .description').val();
                 var dateTime = "<?php echo \Carbon\Carbon::now(); ?>"
                 var status = $('form .status').val();
+                var photo = $('form .photo').val();
                 onGeoCode(lat, lng, function(addr){
                   var data = {
                     description: descr,
@@ -241,7 +253,8 @@
                     lng: lng,
                     address: addr,
                     datetime_last_seen: dateTime,
-                    status: status
+                    status: status,
+                    photo: photo
                   };
                   $.ajax({
                     url: "<?php echo site_url('Report/create'); ?>",
