@@ -1,7 +1,7 @@
 class @Ktns
     constructor: ->
         @setListeners()
-        $('table.data-tables ').DataTable()
+        $('table.data-tables ').DataTable({responsive: true})
 
     setListeners: ->
         #https://davidwalsh.name/browser-camera

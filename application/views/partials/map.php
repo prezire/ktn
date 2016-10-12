@@ -3,7 +3,7 @@
     <a href="<?php echo site_url(); ?>" class="btn btn-default">Home</a>
     <div>
         <!-- <a href="#" class="btn btn-primary take-photo">Take Photo</a> -->
-        
+
         <form>
             <div class="row">
                 <div class="col-sm-6">
@@ -19,18 +19,23 @@
                     </select>
                     <button class="btn-search">Search</button>
                     <div>
-                        <button class="btn-detect-loc">Detect My Location</button>
+                        <button class="btn-detect-loc">
+                          Detect My Location
+                        </button>
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div>Seen a kitten? Report it.</div>
-                    <input type="text" class="description" placeholder="Description: orange kitten, alone and soaked in rain." />
+                    <input type="text"
+                      class="description"
+                      placeholder="Description: orange kitten, alone and soaked in rain." />
+                    <?php echo view('partials/report_status', NULL, TRUE); ?>
                     <button class="btn-report-now">Report Now</button>
                     <div><?php echo \Carbon\Carbon::now(); ?></div>
                 </div>
             </div>
           </form>
-        
+
         <div id="gmap"></div>
 
         <div class="modal fade" tabindex="-1" role="dialog">
@@ -49,7 +54,7 @@
             </div><!-- /.modal-content -->
           </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
-        
+
         <script type="text/javascript" src="//maps.google.com/maps/api/js?key=AIzaSyBxePLLPbYx5YD3_jPNejePTALh57xaYWo"></script>
         <script type="text/javascript">
           $(document).ready(function(){
@@ -83,6 +88,24 @@
               });
               renderCircle();
               google.maps.event.trigger(map, 'resize');
+              //
+            }
+            function onGeoCode(lat, lng, callback)
+            {
+              var geocoder = new google.maps.Geocoder;
+              var latlng = {lat: lat, lng: lng};
+              geocoder.geocode({'location': latlng}, function(results, status) {
+                if (status === 'OK') {
+                  if (results[1]) {
+                    var addr = results[1].formatted_address;
+                    callback(addr);
+                  } else {
+                    window.alert('No results found');
+                  }
+                } else {
+                  window.alert('Geocoder failed due to: ' + status);
+                }
+              });
             }
             function renderCircle(){
               circle = new google.maps.Circle({
@@ -96,11 +119,11 @@
               circle.bindTo('center', marker, 'position');
             }
             function fetchSenderLocation(){
-                
-                // KLUDGE: Not sure if this is the fix for detecting mobile 
+
+                // KLUDGE: Not sure if this is the fix for detecting mobile
                 // device locations that have GPS settings turned off.
                 // http://stackoverflow.com/questions/3397585/navigator-geolocation-getcurrentposition-sometimes-works-sometimes-doesnt
-                
+
                 /*function getGeoLocation() {
                     var options = null;
                     if (navigator.geolocation) {
@@ -113,7 +136,7 @@
                                options);
                     }
                 }*/
-              
+
               if(navigator.geolocation){
                 navigator.geolocation.getCurrentPosition(
                   function(position){
@@ -149,7 +172,7 @@
                 markers.push(marker);
                 //
                 var s = '<div>' + l.description + '</div>';
-                google.maps.event.addListener(marker, 'click', 
+                google.maps.event.addListener(marker, 'click',
                   function(marker, content, infoWindow) {
                      return function() {
                         infoWindow.setContent(content);
@@ -178,7 +201,7 @@
               });
               $('.btn-report-now').click(function(e){
                 sendReport();
-                e.preventDefault(); 
+                e.preventDefault();
               });
             }
             function search()
@@ -191,13 +214,13 @@
                   return false;
                 }
                 var data = {
-                  keywords: kwds, 
-                  lat: lat, 
+                  keywords: kwds,
+                  lat: lat,
                   lng: lng,
                   distance: dist
                 };
                 $.ajax({
-                  url: "<?php echo site_url('Report/search'); ?>", 
+                  url: "<?php echo site_url('Report/search'); ?>",
                   method: 'POST',
                   data: data,
                   success: function(response){
@@ -210,20 +233,25 @@
             {
                 var descr = $('form .description').val();
                 var dateTime = "<?php echo \Carbon\Carbon::now(); ?>"
-                var data = {
-                  description: descr, 
-                  lat: lat, 
-                  lng: lng,
-                  datetime_last_seen: dateTime
-                };
-                $.ajax({
-                  url: "<?php echo site_url('Report/create'); ?>", 
-                  method: 'POST',
-                  data: data,
-                  success: function(response){
-                    $('.modal').modal('show');
-                  }
-                });
+                var status = $('form .status').val();
+                onGeoCode(lat, lng, function(addr){
+                  var data = {
+                    description: descr,
+                    lat: lat,
+                    lng: lng,
+                    address: addr,
+                    datetime_last_seen: dateTime,
+                    status: status
+                  };
+                  $.ajax({
+                    url: "<?php echo site_url('Report/create'); ?>",
+                    method: 'POST',
+                    data: data,
+                    success: function(response){
+                      $('.modal').modal('show');
+                    }
+                  });
+              });
             }
             function init(){
               markers = [];

@@ -2,7 +2,9 @@
   this.Ktns = (function() {
     function Ktns() {
       this.setListeners();
-      $('table.data-tables ').DataTable();
+      $('table.data-tables ').DataTable({
+        responsive: true
+      });
     }
 
     Ktns.prototype.setListeners = function() {};

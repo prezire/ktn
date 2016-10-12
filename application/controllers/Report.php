@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-final class Report extends CI_Controller 
+final class Report extends CI_Controller
 {
 	public function __construct()
 	{
@@ -34,6 +34,22 @@ final class Report extends CI_Controller
 		{
 			$result = $this->model->create(post());
 			showJsonView(array('result' => $result));
+		}
+	}
+
+	public function update($id = NULL)
+	{
+		if(method() === 'post')
+		{
+			extract(post());
+			$this->model->update($id, post());
+			redirect(site_url('Report/update/' . $id));
+		}
+		else
+		{
+			$r = $this->model->read($id)->row();
+			vars($r);
+			render('update');
 		}
 	}
 }
