@@ -12,7 +12,7 @@
       if ($('#report.map').length > 0) {
         Webcam.set({
           width: 150,
-          height: 150,
+          height: 113,
           dest_width: 640,
           dest_height: 480,
           image_format: 'jpeg',

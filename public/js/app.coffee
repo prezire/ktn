@@ -8,8 +8,8 @@ class @Ktns
         if $('#report.map').length > 0
             #https://github.com/jhuckaby/webcamjs
             Webcam.set({
-                width: 150,
-                height: 150,
+                width: 150, #23.4375, 76.5625
+                height: 113,
                 dest_width: 640,
                 dest_height: 480,
                 image_format: 'jpeg',

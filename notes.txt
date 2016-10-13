@@ -1,0 +1,6 @@
+Tmpls:
+    - https://w3layouts.com/preview/?l=/acuario-a-animal-category-flat-bootstrap-responsive-web-template/
+    - https://freehtml5.co/preview/?item=agency-free-html5-website-template-using-bootstrap
+    - https://codegeekz.com/20-best-html5-mobile-templates/
+    - http://appcropolis.com/mobile-templates/
+    - http://www.responsivemiracle.com/best-html5-mobile-app-template/
