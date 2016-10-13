@@ -5,6 +5,7 @@
       <!-- Include all compiled plugins (below), or include individual files as needed -->
       <script src="<?php echo base_url('public/vendors/bootstraps/bootstrap-3.3.7/dist/js/bootstrap.min.js'); ?>"></script>
       <script src="<?php echo base_url('public/vendors/web_cams/webcamjs-master/webcam.min.js'); ?>"></script>           
+      <script src="<?php echo base_url('public/js/util.js'); ?>"></script>
       <script src="<?php echo base_url('public/js/app.js'); ?>"></script>
     </div>
   </body>

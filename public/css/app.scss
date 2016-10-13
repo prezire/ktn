@@ -1,3 +1,12 @@
+a.btn,
+button
+{
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+/* video{border: 1px solid red;} */
+
 #report
 {
     &.index{.photo{width: 60px;}}
@@ -6,10 +15,17 @@
 
     &.map 
     {
+        .panel{margin-top: 4px;}
         #gmap
         {
             height: 450px;
-            border: 1px solid red;
+            border: 1px solid gray;
+        }
+
+        div.camera
+        {
+            /* width: 100% !important;
+            border: 1px solid gray; */
         }
     }
 }

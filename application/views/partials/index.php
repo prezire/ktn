@@ -1,8 +1,13 @@
 <div id="report" class="index">
-	<h1>Reported / Seen Kittens</h1>
-	<a href="<?php echo site_url('Report/map'); ?>" class="btn btn-warning btn-xs">Report Seen Kitten</a>
+	<h1>Seen Kittens</h1>
 	<div class="row">
 		<div class="col-xs-12">
+			<a href="<?php echo site_url('Report/map'); ?>" class="btn btn-primary btn-sm">File a report</a>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+			<hr />
 			<div class="table-responsive">
 				<table width="100%" class="table data-tables table-condensed table-bordered table-striped">
 					<thead>
@@ -16,7 +21,7 @@
 					<tbody>
 						<?php foreach($reports as $r){ ?>
 						<tr>
-							<td>
+							<td class="text-center">
 								<?php
 									$photo = $r->photo;
 									if(empty($photo))
@@ -32,10 +37,10 @@
 							</td>
 							<td><?php echo $r->address; ?></td>
 							<td><?php echo $r->description; ?></td>
-							<td><?php echo $r->datetime_last_seen; ?></td>
-							<td><?php echo $r->status; ?></td>
-							<td>
-								<a href="<?php echo site_url('Report/update/' . $r->id); ?>">Edit</a>
+							<td class="text-center"><?php echo $r->datetime_last_seen; ?></td>
+							<td class="text-center"><?php echo $r->status; ?></td>
+							<td class="text-center">
+								<a href="<?php echo site_url('Report/update/' . $r->id); ?>"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
 							</td>
 						</tr>
 						<?php } ?>

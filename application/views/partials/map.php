@@ -1,74 +1,141 @@
 <div id="report" class="map">
-    <h1>Map</h1>
-    <a href="<?php echo site_url(); ?>" class="btn btn-default btn-xs">Back</a>
+    <?php use Carbon\Carbon; ?>
+    <h1>Seen a kitten? Report it.</h1>
     <div>
+        <hr />
         <form>
+
+            <input type="hidden" class="icon-url" value="" />
+            <input type="hidden" class="search-report-url" value="<?php echo site_url('Report/search') ?>" />
+            <input type="hidden" class="create-report-url" value="<?php echo site_url('Report/create') ?> />
+            <input type="hidden" class="current-date-time" value="<?php echo Carbon::now(); ?>" />
+
             <div class="row">
-                <div class="col-sm-6">
-                    <input type="text" 
-                        class="keywords" 
-                        placeholder="Search: Orange kitten." />
-                    <select class="distance">
-                      <option value="1">1 KM</option>
-                      <option value="2">2 KM</option>
-                      <option value="5">5 KM</option>
-                      <option value="10">10 KM</option>
-                      <option value="20">20 KM</option>
-                      <option value="50">50 KM</option>
-                      <option value="100">100 KM</option>
-                    </select>
-                    <button class="btn-search">Search</button>
-                    <div>
-                        <button class="btn-detect-loc">
-                          Detect My Location
-                        </button>
+                <div class="col-sm-12 hidden">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-7">
+                                <input type="text" 
+                                    class="keywords form-control input-sm"  
+                                    placeholder="Search: Orange kitten." />
+                            </div>
+                            <div class="col-sm-3">
+                                <select class="distance form-control input-sm">
+                                  <option value="1">1 KM</option>
+                                  <option value="2">2 KM</option>
+                                  <option value="5">5 KM</option>
+                                  <option value="10">10 KM</option>
+                                  <option value="20">20 KM</option>
+                                  <option value="50">50 KM</option>
+                                  <option value="100">100 KM</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-2">
+                                <button class="btn btn-primary btn-sm btn-search">Search</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-sm-6">
-                    <div>Seen a kitten? Report it.</div>
-                    <div>
-                        <div class="camera"></div>
+                <div>
+                    <div class="col-sm-2">
+                        <div class="text-center camera"></div>
                         <input type="hidden" class="photo" name="photo" />
-                        <a href="#" class="btn btn-primary btn-take-photo">Take Photo</a>
                     </div>
-                    <div>
-                        <input type="text"
-                          class="description"
-                          placeholder="Description: orange kitten, alone and soaked in rain." />
-                        <?php echo view('partials/report_status', NULL, TRUE); ?>
-                        <button class="btn-report-now">Report Now</button>
-                        <div>
-                            <?php 
-                                echo toHumanizeDate(\Carbon\Carbon::now());
-                            ?>
+                    <div class="col-sm-10">
+                        
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                        <input type="text"
+                                          class="description form-control input-sm"
+                                          placeholder="Description: orange kitten, alone and soaked in rain." />
+                                </div>
+                                <div class="col-sm-6">
+                                    <?php echo view('partials/report_status', NULL, TRUE); ?>
+                                </div>
+                                <div class="col-sm-6">
+                                    <a href="#" class="btn btn-primary btn-block btn-sm btn-take-photo">Capture Photo</a>
+                                </div>
+                                <div class="col-sm-6">
+                                    <button class="btn btn-primary btn-sm btn-report-now btn-block">Report Now</button>
+                                </div>
+                                <div class="col-sm-12">
+                                    <button class="btn btn-primary btn-sm btn-block btn-detect-loc">
+                                      Detect My Location
+                                    </button>
+                                </div>
+                            </div>
                         </div>
+
                     </div>
                 </div>
             </div>
           </form>
 
-        <div id="gmap"></div>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Map</div>
+                    <div class="panel-body">
+                        <div id="gmap"></div>
+                    </div>
+                    <div class="panel-footer">
+                        Today is
+                        <?php 
+                            //KLUDGE:
+                            $days = array
+                            (
+                                'Monday', 
+                                'Tuesday', 
+                                'Wednesday', 
+                                'Thursday', 
+                                'Friday', 
+                                'Saturday', 
+                                'Sunday'
+                            );
+                            $c = new Carbon();
+                            echo $days[$c->dayOfWeek], 
+                                ', ' , 
+                                toHumanizeDate($c->now());
+                        ?>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <a href="<?php echo site_url(); ?>" 
+                    class="btn btn-primary btn-sm">Go back to listing</a>
+            </div>
+        </div>
 
         <div class="modal fade" tabindex="-1" role="dialog">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" 
+                    class="close" 
+                    data-dismiss="modal" 
+                    aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title">Report Sent</h4>
               </div>
               <div class="modal-body">
                 <p>Thank you.</p>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" 
+                    class="btn btn-default" 
+                    data-dismiss="modal">Close</button>
               </div>
             </div><!-- /.modal-content -->
           </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
 
         <script type="text/javascript" src="//maps.google.com/maps/api/js?key=AIzaSyBxePLLPbYx5YD3_jPNejePTALh57xaYWo"></script>
+
+        
+      <script src="<?php echo base_url('public/js/map.js'); ?>"></script>
+
         <script type="text/javascript">
-          $(document).ready(function(){
+          /*$(document).ready(function(){
             var lat;
             var lng;
             var map;
@@ -99,7 +166,6 @@
               });
               renderCircle();
               google.maps.event.trigger(map, 'resize');
-              //
             }
             function onGeoCode(lat, lng, callback)
             {
@@ -129,7 +195,7 @@
               });
               circle.bindTo('center', marker, 'position');
             }
-            function fetchSenderLocation(){
+            function fetchSenderLocation(){*/
 
                 // KLUDGE: Not sure if this is the fix for detecting mobile
                 // device locations that have GPS settings turned off.
@@ -148,7 +214,7 @@
                     }
                 }*/
 
-              if(navigator.geolocation){
+              /*if(navigator.geolocation){
                 navigator.geolocation.getCurrentPosition(
                   function(position){
                     lat = position.coords.latitude;
@@ -197,7 +263,7 @@
               $('.btn-detect-loc').click(function(e){
                 fetchSenderLocation();
                 e.preventDefault();
-              });
+              });*/
               /*$('form .keywords').change(function(e) {
                   $('.btn-search').focus();
               });
@@ -206,7 +272,7 @@
                 circle.setMap(null);
                 renderCircle();
               });*/
-              $('.btn-search').click(function(e){
+              /*$('.btn-search').click(function(e){
                 search();
                 e.preventDefault();
               });
@@ -243,7 +309,7 @@
             function sendReport()
             {
                 var descr = $('form .description').val();
-                var dateTime = "<?php echo \Carbon\Carbon::now(); ?>"
+                var dateTime = "<?php echo Carbon::now(); ?>"
                 var status = $('form .status').val();
                 var photo = $('form .photo').val();
                 onGeoCode(lat, lng, function(addr){
@@ -274,7 +340,7 @@
               renderMap();
             }
             init();
-          });
+          });*/
         </script>
 
     </div>
