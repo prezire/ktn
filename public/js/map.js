@@ -43,7 +43,7 @@
       this.map = new google.maps.Map(document.getElementById('gmap'), opts);
       marker = new google.maps.Marker({
         position: latLng,
-        map: map,
+        map: context.map,
         title: 'You are here!',
         draggable: true
       });
@@ -74,14 +74,14 @@
     Map.prototype.renderCircle = function() {
       var circle;
       circle = new google.maps.Circle({
-        map: map,
+        map: this.map,
         radius: this.distance * 1000,
         strokeWeight: 1,
         strokeOpacity: 0.5,
         fillOpacity: 0.2,
         fillColor: '#27AE60'
       });
-      return circle.bindTo('center', marker, 'position');
+      return circle.bindTo('center', this.marker, 'position');
     };
 
     Map.prototype.fetchSenderLocation = function() {
@@ -99,11 +99,12 @@
     };
 
     Map.prototype.clearAllMarkers = function() {
-      var m, marker, _i, _len, _results;
+      var m, marker, _i, _len, _ref, _results;
+      _ref = this.markers;
       _results = [];
-      for (m = _i = 0, _len = markers.length; _i < _len; m = ++_i) {
-        marker = markers[m];
-        _results.push(marker.setMap(null));
+      for (m = _i = 0, _len = _ref.length; _i < _len; m = ++_i) {
+        marker = _ref[m];
+        _results.push(m.setMap(null));
       }
       return _results;
     };
@@ -114,15 +115,14 @@
       _results = [];
       for (i = _i = 0, _len = locations.length; _i < _len; i = ++_i) {
         l = locations[i];
-        l = locations[i];
-        d = l.details;
+        d = i.details;
         marker = new google.maps.Marker({
           position: new google.maps.LatLng(d.lat, d.lng),
-          map: map,
+          map: this.map,
           title: d.address,
           icon: $('.icon-url').val()
         });
-        markers.push(marker);
+        this.markers.push(marker);
         s = '<div>' + l.description + '</div>';
         _results.push(google.maps.event.addListener(marker, 'click', function(marker, content, infoWindow) {
 

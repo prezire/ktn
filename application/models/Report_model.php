@@ -28,7 +28,7 @@ final class Report_model extends CI_Model
     }
     public function create(array $values)
     {
-        //Replace new value of photo key, 
+        //Replace new value of photo key,
         //which will be saved later on.
         $values['photo'] = $this->savePhoto($values);
         $this->db->insert('reports', $values);

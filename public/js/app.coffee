@@ -2,7 +2,7 @@ class @Ktns
     constructor: ->
         @setListeners()
         @initCam()
-        $('table.data-tables ').DataTable({responsive: true})
+        @table = $('table.data-tables').DataTable({responsive: true})
 
     initCam: ->
         if $('#report.map').length > 0
@@ -21,9 +21,11 @@ class @Ktns
             Webcam.attach '.camera'
 
     takePhoto: ->
+        context = @
         Webcam.snap( (dataUri) ->
             rawImgData = dataUri.replace(/^data\:image\/\w+\;base64\,/, '')
             $('.photo').val rawImgData
+            Util.showModal true, 'Success!', 'A photo was captured.'
         )
 
     setListeners: ->
@@ -31,5 +33,16 @@ class @Ktns
         $('#report.map .btn-take-photo').click (e) ->
             e.preventDefault()
             context.takePhoto()
+
+        $('.btn-delete').click (e) ->
+            e.preventDefault()
+            t = $(this)
+            confirm = window.confirm 'Really delete?'
+            if confirm
+                #Del in BG. No need for callback.
+                $.get t.attr 'href'
+                $('table.data-tables tr').removeClass 'selected'
+                t.parent().parent().addClass 'selected'
+                context.table.row('.selected').remove().draw false
 
 $(document).ready -> new Ktns()

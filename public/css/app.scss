@@ -1,11 +1,16 @@
 a.btn,
-button
-{
-    margin-top: 2px;
-    margin-bottom: 2px;
-}
+button,
+input,
+textarea,
+select{margin-bottom: 4px;}
 
-/* video{border: 1px solid red;} */
+table.table > tbody > tr > td{vertical-align: middle;}
+
+img.logo
+{
+    width: 72px;
+    display: inline;
+}
 
 #report
 {
@@ -13,19 +18,13 @@ button
 
     &.update{.photo{width: 100px;}}
 
-    &.map 
+    &.map
     {
         .panel{margin-top: 4px;}
         #gmap
         {
             height: 450px;
             border: 1px solid gray;
-        }
-
-        div.camera
-        {
-            /* width: 100% !important;
-            border: 1px solid gray; */
         }
     }
 }

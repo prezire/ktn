@@ -52,4 +52,9 @@ final class Report extends CI_Controller
 			render('update');
 		}
 	}
+
+	public function delete($id)
+	{
+		return $this->model->delete($id);
+	}
 }

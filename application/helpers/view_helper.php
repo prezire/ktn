@@ -13,6 +13,25 @@ function toHumanizeDate($date)
   return str_replace('-', '/', $date);
 }
 
+function toFriendlyDate($carbonInst)
+{
+  //KLUDGE:
+  $days = array
+  (
+      'Monday',
+      'Tuesday',
+      'Wednesday',
+      'Thursday',
+      'Friday',
+      'Saturday',
+      'Sunday'
+  );
+  $c = $carbonInst;
+  return $days[$c->dayOfWeek]
+    . ', '
+    . toHumanizeDate($c->now());
+}
+
 function toDropdownArray(array $dbData, $keyIndex, $valueIndex)
 {
   $data = array();

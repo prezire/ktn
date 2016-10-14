@@ -1,6 +1,9 @@
 <div id="report" class="map">
     <?php use Carbon\Carbon; ?>
-    <h1>Seen a kitten? Report it.</h1>
+    <h1>
+      <img class="logo" src="<?php echo base_url('public/images/cat_icon.png'); ?>">
+      Seen a lost or abandoned kitten? Report it.
+    </h1>
     <div>
         <hr />
         <form>
@@ -15,8 +18,8 @@
                     <div class="form-group">
                         <div class="row">
                             <div class="col-sm-7">
-                                <input type="text" 
-                                    class="keywords form-control input-sm"  
+                                <input type="text"
+                                    class="keywords form-control input-sm"
                                     placeholder="Search: Orange kitten." />
                             </div>
                             <div class="col-sm-3">
@@ -42,7 +45,7 @@
                         <input type="hidden" class="photo" name="photo" />
                     </div>
                     <div class="col-sm-10">
-                        
+
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-sm-6">
@@ -81,29 +84,13 @@
                     </div>
                     <div class="panel-footer">
                         Today is
-                        <?php 
-                            //KLUDGE:
-                            $days = array
-                            (
-                                'Monday', 
-                                'Tuesday', 
-                                'Wednesday', 
-                                'Thursday', 
-                                'Friday', 
-                                'Saturday', 
-                                'Sunday'
-                            );
-                            $c = new Carbon();
-                            echo $days[$c->dayOfWeek], 
-                                ', ' , 
-                                toHumanizeDate($c->now());
-                        ?>
+                        <?php echo toFriendlyDate(new Carbon()); ?>
                     </div>
                 </div>
             </div>
             <div class="col-xs-12">
-                <a href="<?php echo site_url(); ?>" 
-                    class="btn btn-primary btn-sm">Go back to listing</a>
+                <a href="<?php echo site_url(); ?>"
+                    class="btn btn-success btn-sm">Go back to listing</a>
             </div>
         </div>
 
@@ -111,9 +98,9 @@
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <button type="button" 
-                    class="close" 
-                    data-dismiss="modal" 
+                <button type="button"
+                    class="close"
+                    data-dismiss="modal"
                     aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title">Report Sent</h4>
               </div>
@@ -121,8 +108,8 @@
                 <p>Thank you.</p>
               </div>
               <div class="modal-footer">
-                <button type="button" 
-                    class="btn btn-default" 
+                <button type="button"
+                    class="btn btn-default"
                     data-dismiss="modal">Close</button>
               </div>
             </div><!-- /.modal-content -->
@@ -131,11 +118,11 @@
 
         <script type="text/javascript" src="//maps.google.com/maps/api/js?key=AIzaSyBxePLLPbYx5YD3_jPNejePTALh57xaYWo"></script>
 
-        
-      <script src="<?php echo base_url('public/js/map.js'); ?>"></script>
+
+      <!-- <script src="<?php echo base_url('public/js/map.js'); ?>"></script> -->
 
         <script type="text/javascript">
-          /*$(document).ready(function(){
+          $(document).ready(function(){
             var lat;
             var lng;
             var map;
@@ -195,7 +182,7 @@
               });
               circle.bindTo('center', marker, 'position');
             }
-            function fetchSenderLocation(){*/
+            function fetchSenderLocation(){
 
                 // KLUDGE: Not sure if this is the fix for detecting mobile
                 // device locations that have GPS settings turned off.
@@ -214,7 +201,7 @@
                     }
                 }*/
 
-              /*if(navigator.geolocation){
+              if(navigator.geolocation){
                 navigator.geolocation.getCurrentPosition(
                   function(position){
                     lat = position.coords.latitude;
@@ -263,7 +250,7 @@
               $('.btn-detect-loc').click(function(e){
                 fetchSenderLocation();
                 e.preventDefault();
-              });*/
+              });
               /*$('form .keywords').change(function(e) {
                   $('.btn-search').focus();
               });
@@ -272,7 +259,7 @@
                 circle.setMap(null);
                 renderCircle();
               });*/
-              /*$('.btn-search').click(function(e){
+              $('.btn-search').click(function(e){
                 search();
                 e.preventDefault();
               });
@@ -327,7 +314,7 @@
                     method: 'POST',
                     data: data,
                     success: function(response){
-                      $('.modal').modal('show');
+                      Util.showModal(true, 'Report Sent', 'Thank you.');
                     }
                   });
               });
@@ -340,7 +327,7 @@
               renderMap();
             }
             init();
-          });*/
+          });
         </script>
 
     </div>
