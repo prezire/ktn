@@ -38,6 +38,8 @@ class @Ktns
             e.preventDefault()
             t = $(this)
             confirm = window.confirm 'Really delete?'
+            #console.log 'sjdlfksjdf'
+            #return false
             if confirm
                 #Del in BG. No need for callback.
                 $.get t.attr 'href'

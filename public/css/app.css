@@ -15,6 +15,10 @@ img.logo {
   display: inline;
 }
 
+#main.index, #main.about {
+  margin-top: 52px;
+}
+
 #report.index .photo {
   width: 60px;
 }

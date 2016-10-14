@@ -9,7 +9,7 @@
                 <input type="hidden" name="id" value="<?php echo $r->id; ?>" />
 
                 <div>
-                    <!-- 
+                    <!--
                         Do not change photo of how the kitten was originally found.
                         If there are plans to upload a photo, file a new Report instead.
                     -->
@@ -17,7 +17,7 @@
                 </div>
 
                 <div>
-                    <label for="">Address:</label> 
+                    <label for="">Address:</label>
                     <textarea class="form-control input-sm" name="address"><?php echo $r->address; ?></textarea>
                 </div>
 
@@ -28,7 +28,7 @@
 
                 <div>
                     <label for="">Date / Time Last Seen:</label>
-                    <?php 
+                    <?php
                         use Carbon\Carbon;
                         $lastSeen = new Carbon($r->datetime_last_seen);
                         $now = Carbon::now();
@@ -40,7 +40,7 @@
                 </div>
 
                 <div>
-                    Status: <?php echo view('partials/report_status', NULL, TRUE); ?>
+                    Status: <?php echo view('partials/reports/status', NULL, TRUE); ?>
                 </div>
                 <a href="<?php echo site_url('Report'); ?>" class="btn btn-danger btn-sm">Back</a>
                 <button class="btn btn-primary btn-sm">Update</button>

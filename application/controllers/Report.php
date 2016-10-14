@@ -12,11 +12,11 @@ final class Report extends CI_Controller
 	{
 		$reports = $this->model->all()->result();
 		vars(['reports' => $reports]);
-		render('index');
+		render('reports/index');
 	}
 	public function map()
 	{
-		render('map');
+		render('reports/map');
 	}
 
 	public function search()
@@ -49,7 +49,7 @@ final class Report extends CI_Controller
 		{
 			$r = $this->model->read($id)->row();
 			vars($r);
-			render('update');
+			render('reports/update');
 		}
 	}
 

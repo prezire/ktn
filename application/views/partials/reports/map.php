@@ -10,7 +10,7 @@
 
             <input type="hidden" class="icon-url" value="" />
             <input type="hidden" class="search-report-url" value="<?php echo site_url('Report/search') ?>" />
-            <input type="hidden" class="create-report-url" value="<?php echo site_url('Report/create') ?> />
+            <input type="hidden" class="create-report-url" value="<?php echo site_url('Report/create') ?>" />
             <input type="hidden" class="current-date-time" value="<?php echo Carbon::now(); ?>" />
 
             <div class="row">
@@ -54,7 +54,7 @@
                                           placeholder="Description: orange kitten, alone and soaked in rain." />
                                 </div>
                                 <div class="col-sm-6">
-                                    <?php echo view('partials/report_status', NULL, TRUE); ?>
+                                    <?php echo view('partials/reports/status', NULL, TRUE); ?>
                                 </div>
                                 <div class="col-sm-6">
                                     <a href="#" class="btn btn-primary btn-block btn-sm btn-take-photo">Capture Photo</a>
@@ -89,7 +89,7 @@
                 </div>
             </div>
             <div class="col-xs-12">
-                <a href="<?php echo site_url(); ?>"
+                <a href="<?php echo site_url('Report'); ?>"
                     class="btn btn-success btn-sm">Go back to listing</a>
             </div>
         </div>
