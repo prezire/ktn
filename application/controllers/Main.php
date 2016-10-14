@@ -5,5 +5,6 @@ final class Main extends CI_Controller
 {
 	public function __construct(){parent::__construct();}
 	public function index(){render('index');}
-	public function about(){render('about');}
+    public function tips(){render('tips');}
+    public function about(){render('about');}
 }

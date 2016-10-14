@@ -8,7 +8,6 @@
 		</p>
 		<p>
 			<a href="<?php echo site_url('Report'); ?>" class="btn btn-success btn-sm">GET STARTED</a>
-			<a href="<?php echo site_url('Main/about'); ?>" class="btn btn-default btn-sm">ABOUT</a>
 		</p>
 	</div>
 </div>

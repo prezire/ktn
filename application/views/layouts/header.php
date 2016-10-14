@@ -9,6 +9,7 @@
 
     <!-- Bootstrap -->
     <link href="<?php echo base_url('public/vendors/bootstraps/bootstrap-3.3.7/dist/css/bootstrap.min.css'); ?>" rel="stylesheet">
+    <link href="<?php echo base_url('public/vendors/bootstraps/bootstrap-3.3.7/docs/examples/navbar-fixed-top/navbar-fixed-top.css'); ?>" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -27,3 +28,4 @@
     <div id="container" class="container">
       <div class="row">
         <div class="col-xs-12">
+          <?php echo view('partials/navbar', NULL, TRUE); ?>

@@ -1,9 +1,8 @@
 <div id="report" class="map">
     <?php use Carbon\Carbon; ?>
-    <h1>
-      <img class="logo" src="<?php echo base_url('public/images/cat_icon.png'); ?>">
+    <h3>
       Seen a lost or abandoned kitten? Report it.
-    </h1>
+    </h3>
     <div>
         <hr />
         <form>

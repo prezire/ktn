@@ -1,5 +1,5 @@
 <div id="report" class="update">
-    <h1>Update a report</h1>
+    <h3>Update a report</h3>
     <div>
         <?php
             echo form_open('Report/update');
@@ -42,8 +42,11 @@
                 <div>
                     Status: <?php echo view('partials/reports/status', NULL, TRUE); ?>
                 </div>
-                <a href="<?php echo site_url('Report'); ?>" class="btn btn-danger btn-sm">Back</a>
-                <button class="btn btn-primary btn-sm">Update</button>
+
+                <div>
+                    <a href="<?php echo site_url('Report'); ?>" class="btn btn-danger btn-sm">Back</a>
+                    <button class="btn btn-primary btn-sm">Update</button>
+                </div>
             </div>
         <?php echo form_close(); ?>
     </div>

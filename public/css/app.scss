@@ -1,16 +1,9 @@
-a.btn,
-button,
+.btn,
 input,
 textarea,
 select{margin-bottom: 4px;}
 
 table.table > tbody > tr > td{vertical-align: middle;}
-
-img.logo
-{
-    width: 72px;
-    display: inline;
-}
 
 #main
 {
@@ -27,10 +20,13 @@ img.logo
     &.map
     {
         .panel{margin-top: 4px;}
+        
         #gmap
         {
             height: 450px;
             border: 1px solid gray;
         }
+
+        .camera{margin-bottom: 4px;}
     }
 }

@@ -1,8 +1,7 @@
 <div id="report" class="index">
-	<h1>
-		<img class="logo" src="<?php echo base_url('public/images/cat_icon.png'); ?>">
-		Reports of seen or abandoned kittens.
-	</h1>
+	<h3>
+		Filed reports of seen or abandoned kittens.
+	</h3>
 	<div class="row">
 		<div class="col-xs-12">
 			<a href="<?php echo site_url('Report/map'); ?>"

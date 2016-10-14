@@ -6,8 +6,5 @@
 		<p>
 			Save 'em.
 		</p>
-		<p>
-			<a href="<?php echo site_url('Main'); ?>" class="btn btn-primary btn-sm">Back</a>
-		</p>
 	</div>
 </div>
