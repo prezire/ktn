@@ -20,6 +20,7 @@ table.table > tbody > tr > td {
   height: 450px;
   border: 1px solid gray; }
 #report.map .camera {
-  margin-bottom: 4px; }
+  margin-bottom: 4px;
+  background-color: #ccc; }
 
 /*# sourceMappingURL=app.css.map */

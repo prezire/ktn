@@ -27,6 +27,10 @@ table.table > tbody > tr > td{vertical-align: middle;}
             border: 1px solid gray;
         }
 
-        .camera{margin-bottom: 4px;}
+        .camera
+        {
+            margin-bottom: 4px;
+            background-color: #ccc;
+        }
     }
 }
