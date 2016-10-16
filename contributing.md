@@ -1,7 +1,7 @@
 # Contributing to Ktn
 
 
-Ktn is a community driven project and accepts contributions of code and documentation from the community. These contributions are made in the form of Issues or [Pull Requests](http://help.github.com/send-pull-requests/) on the [Ktn repository](https://bitbucket.org/mamoin/ktn/>) on BitBucket.
+Ktn is a community driven project and accepts contributions of code and documentation from the community. These contributions are made in the form of Issues or [Pull Requests](http://help.github.com/send-pull-requests/) on the [Ktn repository](https://github.com/prezire/ktn/>) on GitHub.
 
 Issues are a quick way to point out a bug or enhancement. If you find a bug or documentation error in Ktn then please check a few things first:
 
@@ -40,27 +40,27 @@ No signing is required.
 
 ## How-to Guide
 
-There are two ways to make changes, the easy way and the hard way. Either way you will need to [create a BitBucket account](https://bitbucket.org/account/signup/).
+You will need to [create a GitHub account](https://github.com/join?source=header-home).
 
-The best way to contribute is to "clone" your fork of Ktn to your development area. That sounds like some jargon, but "forking" on BitBucket means "making a copy of that repo to your account" and "cloning" means "copying that code to your environment so you can work on it".
+The best way to contribute is to "clone" your fork of Ktn to your development area. That sounds like some jargon, but "forking" on GitHub means "making a copy of that repo to your account" and "cloning" means "copying that code to your environment so you can work on it".
 
 1. Set up Git (Windows, Mac & Linux)
 2. Go to the Ktn repo
 3. Fork it
-4. Clone your Ktn repo from [https://mamoin@bitbucket.org/mamoin/ktn.git]
-5. Checkout the "develop" branch At this point you are ready to start making changes. 
-6. Fix existing bugs on the Issue tracker after taking a look to see nobody else is working on them.
+4. Clone your Ktn repo from [https://github.com/prezire/ktn.git]
+5. Checkout the "develop" branch. At this point you are ready to start making changes
+6. Fix existing bugs on the Issue tracker after taking a look to see nobody else is working on them
 7. Commit the files
 8. Push your develop branch to your fork
 9. Send a pull request [http://help.github.com/send-pull-requests/](http://help.github.com/send-pull-requests/)
 
 ### Keeping your fork up-to-date
 
-Unlike systems like Subversion, Git can have multiple remotes. A remote is the name for a URL of a Git repository. By default your fork will have a remote named "origin" which points to your fork, but you can add another remote named "ktn" which points to `https://mamoin@bitbucket.org/mamoin/ktn.git`. This is a read-only remote but you can pull from this develop branch to update your own.
+Unlike systems like Subversion, Git can have multiple remotes. A remote is the name for a URL of a Git repository. By default your fork will have a remote named "origin" which points to your fork, but you can add another remote named "ktn" which points to `https://github.com/prezire/ktn.git`. This is a read-only remote but you can pull from this develop branch to update your own.
 
 If you are using command-line you can do the following:
 
-1. `git remote add ktn https://mamoin@bitbucket.org/mamoin/ktn.git`
+1. `git remote add ktn https://github.com/prezire/ktn.git`
 2. `git pull ktn develop`
 3. `git push origin develop`
 

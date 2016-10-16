@@ -2,9 +2,9 @@
 What is Ktn
 ###################
 
-Project Ktn which, means Kitten is an application that lets anyone file and manage a report
-related to abandoned kittens. It also provides instructions how to take care of them
-and contact information of animal welfares in many areas. 
+Ktn which, means Kitten is an application that lets anyone file and manage a report
+related to abandoned or endangered kittens. It also provides instructions how to 
+take care of them and contact information of animal welfare organizations in many areas. 
 
 *******************
 Server Requirements
@@ -32,11 +32,11 @@ Please see the `license agreement <https://opensource.org/licenses/MIT>`_.
 Resources
 *********
 
-Report any issues to `Ktn in BitBucket <https://bitbucket.org/mamoin/ktn/issues?status=new&status=open>`_.
+Report any issues to `Ktn in GitHub <https://github.com/prezire/ktn/issues>`_.
 Or better yet, contribute.
 
 ***************
 Acknowledgement
 ***************
 
-PHP, open-source communities, developers, designers, animal welfares and you.
+PHP, open-source communities, developers, designers, animal welfare organizations and you.
