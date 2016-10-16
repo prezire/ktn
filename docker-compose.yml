@@ -1,0 +1,30 @@
+version: '2'
+
+services:
+  ktn_nginx:
+    image: nginx:latest
+    ports:
+      - 8069:80
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    volumes_from:
+      - ktn_php
+
+  ktn_php:
+    build: .
+    expose:
+      - 9000
+    volumes:
+      - /var/www/html
+
+  ktn_mysql:
+    image: mysql:latest
+    ports:
+      - 3306:3306
+    volumes:
+      - /var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ktn
+      MYSQL_DATABASE: ktn_db
+      MYSQL_USER: ktn_user
+      MYSQL_PASSWORD: ktn_pwd
