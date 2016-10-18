@@ -13,31 +13,6 @@
             <input type="hidden" class="current-date-time" value="<?php echo Carbon::now(); ?>" />
 
             <div class="row">
-                <div class="col-sm-12 hidden">
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-sm-7">
-                                <input type="text"
-                                    class="keywords form-control input-sm"
-                                    placeholder="Search: Orange kitten." />
-                            </div>
-                            <div class="col-sm-3">
-                                <select class="distance form-control input-sm">
-                                  <option value="1">1 KM</option>
-                                  <option value="2">2 KM</option>
-                                  <option value="5">5 KM</option>
-                                  <option value="10">10 KM</option>
-                                  <option value="20">20 KM</option>
-                                  <option value="50">50 KM</option>
-                                  <option value="100">100 KM</option>
-                                </select>
-                            </div>
-                            <div class="col-sm-2">
-                                <button class="btn btn-primary btn-sm btn-search">Search</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <div>
                     <div class="col-sm-2">
                         <div class="text-center camera"></div>
@@ -48,23 +23,58 @@
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-sm-6">
-                                        <input type="text"
-                                          class="description form-control input-sm"
-                                          placeholder="Description: orange kitten, alone and soaked in rain." />
+                                  <div class="panel panel-default">
+                                    <div class="panel-heading">Report details</div>
+                                    <div class="panel-body">
+                                      <div class="col-sm-12">
+                                              <input type="text"
+                                                class="description form-control input-sm"
+                                                placeholder="Description: orange kitten, alone and soaked in rain" />
+                                      </div>
+                                      <div class="col-sm-12">
+                                          <?php echo view('partials/reports/status', NULL, TRUE); ?>
+                                      </div>
+                                      <div class="col-sm-6">
+                                          <a href="#" class="btn btn-primary btn-block btn-sm btn-take-photo">Capture Photo</a>
+                                      </div>
+                                      <div class="col-sm-6">
+                                          <button class="btn btn-primary btn-sm btn-report-now btn-block">Report Now</button>
+                                      </div>
+                                    </div>
+                                  </div>
                                 </div>
                                 <div class="col-sm-6">
-                                    <?php echo view('partials/reports/status', NULL, TRUE); ?>
-                                </div>
-                                <div class="col-sm-6">
-                                    <a href="#" class="btn btn-primary btn-block btn-sm btn-take-photo">Capture Photo</a>
-                                </div>
-                                <div class="col-sm-6">
-                                    <button class="btn btn-primary btn-sm btn-report-now btn-block">Report Now</button>
-                                </div>
-                                <div class="col-sm-12">
-                                    <button class="btn btn-primary btn-sm btn-block btn-detect-loc">
-                                      Detect My Location
-                                    </button>
+                                    <div class="form-group">
+                                          <div class="panel panel-default">
+                                            <div class="panel-heading">Search</div>
+                                            <div class="panel-body">
+                                              <div class="col-sm-12">
+                                                  <input type="text"
+                                                      class="keywords form-control input-sm"
+                                                      placeholder="Search: orange kitten" />
+                                              </div>
+                                              <div class="col-sm-12">
+                                                  <select class="distance form-control input-sm">
+                                                    <option value="1">1 KM</option>
+                                                    <option value="2">2 KM</option>
+                                                    <option value="5">5 KM</option>
+                                                    <option value="10">10 KM</option>
+                                                    <option value="20">20 KM</option>
+                                                    <option value="50">50 KM</option>
+                                                    <option value="100">100 KM</option>
+                                                  </select>
+                                              </div>
+                                              <div class="col-sm-6">
+                                                  <button class="btn btn-primary btn-sm btn-block btn-detect-loc">
+                                                    Detect My Location
+                                                  </button>
+                                              </div>
+                                              <div class="col-sm-6">
+                                                  <button class="btn btn-primary btn-sm btn-block btn-search">Search</button>
+                                              </div>
+                                          </div>
+                                        </div>
+                                  </div>
                                 </div>
                             </div>
                         </div>
@@ -224,17 +234,19 @@
               //
               for (var i = 0; i < locations.length; i++) {
                 var l = locations[i];
-                var d = l.details;
                 var marker = new google.maps.Marker({
-                  position: new google.maps.LatLng(d.lat, d.lng),
+                  position: new google.maps.LatLng(l.lat, l.lng),
                   map: map,
-                  title: d.address,
+                  title: l.address,
                   icon: "<?php echo base_url('public/images/radius_map_pin.png'); ?>"
                 });
                 //
                 markers.push(marker);
                 //
-                var s = '<div>' + l.description + '</div>';
+                var sUpdateUrl = "<?php echo site_url('Report/read'); ?>/" + l.id;
+                var s = '<div><strong>Description: </strong><a target="_blank" href="' + sUpdateUrl + '">' + l.description + '</a></div>';
+                s += '<div><strong>Address: </strong>' + l.address + '</div>';
+                s += '<div><strong>Status: </strong>' + l.status + '</div>';
                 google.maps.event.addListener(marker, 'click',
                   function(marker, content, infoWindow) {
                      return function() {
@@ -247,24 +259,30 @@
             }
             function setListeners(){
               $('.btn-detect-loc').click(function(e){
-                fetchSenderLocation();
                 e.preventDefault();
+                fetchSenderLocation();
               });
-              /*$('form .keywords').change(function(e) {
+              /*
+                Use <submit /> in order for this to work.
+                $('form .keywords').change(function(e) {
                   $('.btn-search').focus();
-              });
+                });
+                $('form .description').change(function(e) {
+                  $('.btn-report-now').focus();
+                });
+              */
               $('form .distance').change(function(){
                 distance = parseInt($(this).val());
                 circle.setMap(null);
                 renderCircle();
-              });*/
+              });
               $('.btn-search').click(function(e){
-                search();
                 e.preventDefault();
+                search();
               });
               $('.btn-report-now').click(function(e){
-                sendReport();
                 e.preventDefault();
+                sendReport();
               });
             }
             function search()
@@ -287,8 +305,7 @@
                   method: 'POST',
                   data: data,
                   success: function(response){
-                    console.log(response);
-                    //renderSearchMarkers(response.locations);
+                    renderSearchMarkers(response.locations);
                   }
                 });
             }

@@ -54,8 +54,22 @@ final class Report_model extends CI_Model
         //Distance in KM.
         extract($values);
         //
-        $s = "SELECT *, (6371 * acos(cos(radians($lat)) * cos(radians(lat)) * cos(radians(lng) - radians($lng)) + sin(radians($lat)) * sin(radians(lat)))) distance FROM reports WHERE description LIKE '%$keywords%' GROUP BY id HAVING distance < $distance ORDER BY distance LIMIT 0, 20";
-        $result = $this->db->query($s)->result();
-        showJsonView(['result' => $result]);
+        $s = "SELECT *, 
+        (
+            6371 * acos
+            (
+                cos(radians($lat)) * cos(radians(lat)) * 
+                cos(radians(lng) - radians($lng)) + 
+                sin(radians($lat)) * sin(radians(lat))
+            )
+        ) distance 
+        FROM reports 
+        WHERE description LIKE '%$keywords%' 
+        GROUP BY id 
+        HAVING distance < $distance 
+        ORDER BY distance 
+        LIMIT 0, 20";
+        $locs = $this->db->query($s)->result();
+        showJsonView(['locations' => $locs]);
     }
 }

@@ -15,6 +15,7 @@ table.table > tbody > tr > td{vertical-align: middle;}
 {
     &.index{.photo{width: 60px;}}
 
+    &.read,
     &.update{.photo{width: 100px;}}
 
     &.map

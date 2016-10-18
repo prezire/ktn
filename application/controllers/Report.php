@@ -37,6 +37,13 @@ final class Report extends CI_Controller
 		}
 	}
 
+	public function read($id)
+	{
+		$r = $this->model->read($id)->row();
+		vars($r);
+		render('reports/read');
+	}
+
 	public function update($id = NULL)
 	{
 		if(method() === 'post')

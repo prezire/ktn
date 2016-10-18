@@ -12,7 +12,7 @@ table.table > tbody > tr > td {
 
 #report.index .photo {
   width: 60px; }
-#report.update .photo {
+#report.read .photo, #report.update .photo {
   width: 100px; }
 #report.map .panel {
   margin-top: 4px; }
