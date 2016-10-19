@@ -15,13 +15,27 @@
             <li class="active"><a href="<?php echo site_url('Main'); ?>">Home</a></li>
             <li><a href="<?php echo site_url('Main/about'); ?>">About</a></li>
             <li><a href="<?php echo site_url('Main/tips'); ?>">Tips</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Reports <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="<?php echo site_url('Report'); ?>">Filed reports</a></li>
-                <li><a href="<?php echo site_url('Report/map'); ?>">File a report</a></li>
-              </ul>
-            </li>
+            
+            <?php 
+              if($this->aauth->is_loggedin())
+              {
+            ?>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Reports <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="<?php echo site_url('Report'); ?>">Filed reports</a></li>
+                    <li><a href="<?php echo site_url('Report/map'); ?>">File a report</a></li>
+                  </ul>
+                </li>
+            <?php 
+              }
+              else
+              {
+            ?>
+              <li><a href="<?php echo site_url('Auth/login'); ?>">Login</a></li>
+            <?php 
+              }
+            ?>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
