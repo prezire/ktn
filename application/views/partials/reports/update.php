@@ -13,7 +13,17 @@
                         Do not change photo of how the kitten was originally found.
                         If there are plans to upload a photo, file a new Report instead.
                     -->
-                    <img src="<?php echo base_url($r->photo); ?>" class="photo" />
+                    <?php
+                        $photo = $r->photo;
+                        if(!empty($photo))
+                        {
+                            echo '<img src="' . base_url($r->photo) . '" class="photo" />';
+                        }
+                        else
+                        {
+                            echo '<strong>No photo</strong>';
+                        }
+                    ?>
                 </div>
 
                 <div>

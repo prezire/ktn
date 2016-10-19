@@ -35,7 +35,7 @@ CREATE TABLE `reports` (
   `photo` varchar(255) NOT NULL,
   `description` text NOT NULL,
   `datetime_last_seen` datetime NOT NULL,
-  `status` enum('Unknown','Left','Adopted','Disappeared') NOT NULL DEFAULT 'Unknown'
+  `status` enum('Unknown','Abandoned / Left','Adopted','Disappeared') NOT NULL DEFAULT 'Unknown'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --

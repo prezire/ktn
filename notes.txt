@@ -4,3 +4,4 @@ Tmpls:
     - https://codegeekz.com/20-best-html5-mobile-templates/
     - http://appcropolis.com/mobile-templates/
     - http://www.responsivemiracle.com/best-html5-mobile-app-template/
+    - <a href="http://www.freepik.com/free-vector/cat-breeds-pack-in-flat-design_832789.htm">Designed by Freepik</a>

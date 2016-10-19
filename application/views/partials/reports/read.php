@@ -5,7 +5,17 @@
         <?php $r = (object)get_vars('record'); ?>
             <div class="form-group">
                 <input type="hidden" name="id" value="<?php echo $r->id; ?>" />
-                    <img src="<?php echo base_url($r->photo); ?>" class="photo" />
+                    <?php
+                        $photo = $r->photo;
+                        if(!empty($photo))
+                        {
+                            echo '<img src="' . base_url($r->photo) . '" class="photo" />';
+                        }
+                        else
+                        {
+                            echo '<strong>No photo</strong>';
+                        }
+                    ?>
                 </div>
 
                 <div>

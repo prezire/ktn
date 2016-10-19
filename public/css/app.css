@@ -2,25 +2,34 @@
 input,
 textarea,
 select {
-  margin-bottom: 4px; }
+  margin-bottom: 4px;
+}
 
 table.table > tbody > tr > td {
-  vertical-align: middle; }
+  vertical-align: middle;
+}
 
 #main.index, #main.about {
-  margin-top: 52px; }
+  margin-top: 52px;
+}
 
 #report.index .photo {
-  width: 60px; }
-#report.read .photo, #report.update .photo {
-  width: 100px; }
+  width: 60px;
+}
+#report.read strong,
+#report.read .photo, #report.update strong,
+#report.update .photo {
+  width: 100px;
+  display: block;
+}
 #report.map .panel {
-  margin-top: 4px; }
+  margin-top: 4px;
+}
 #report.map #gmap {
   height: 450px;
-  border: 1px solid gray; }
+  border: 1px solid gray;
+}
 #report.map .camera {
   margin-bottom: 4px;
-  background-color: #ccc; }
-
-/*# sourceMappingURL=app.css.map */
+  background-color: #ccc;
+}
