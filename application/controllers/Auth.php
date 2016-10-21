@@ -10,7 +10,8 @@ final class Auth extends CI_Controller
 
     public function registration($state)
     {
-        render('auth/register_' . $state);
+        vars(array('state' => $state));
+        render('auth/register_cmpl');
     }
 
     public function register()

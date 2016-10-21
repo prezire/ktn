@@ -27,6 +27,8 @@
                     <li><a href="<?php echo site_url('Report/map'); ?>">File a report</a></li>
                   </ul>
                 </li>
+
+                <li><a href="<?php echo site_url('Analytics'); ?>">Analytics</a></li>
             <?php 
               }
               else
